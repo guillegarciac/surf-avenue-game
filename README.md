@@ -1,7 +1,7 @@
 # Surf Avenue Game
 
 <!-- When you finish, add a nice screenshot of your game -->
-<img src="./img/surfavenue.png.png">
+<img src="./img/surfavenue.png">
 
 ## Description
 
