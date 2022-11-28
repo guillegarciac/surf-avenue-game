@@ -34,6 +34,7 @@ class Game {
   }
 
   start() {
+    backgroundMusic.play();
     this._assignControls();
     this._update();
   }
