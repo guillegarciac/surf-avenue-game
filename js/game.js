@@ -23,7 +23,12 @@ class Game {
     this.ctx.drawImage(this.surfer.image, this.surfer.x, this.surfer.y, this.surfer.width, this.surfer.height);
   }
 
+  _clean() {
+    this.ctx.clearRect(0, 0, 1000, 600);
+  }
+
   _update() {
+    this._clean();
     this._drawSurfer();
     window.requestAnimationFrame(() => this._update());
   }
