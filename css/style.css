@@ -3,20 +3,31 @@
   padding: 0;
 }
 
-/* Basic styles, change according to your style */
+body {
+  background-color: rgb(1, 1, 1);
+  font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+p {
+  margin: 15px 0;
+}
+
+/* Basic styles */
 
 #start-page,
 #lose-page {
-  height: 600px;
-  width: 1000px;
+  height: 825px;
+  width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   margin: 0 auto;
-  border: 1px solid black;
-  margin-top: 30px;
+  border: 1px solid white;
+  margin-top: 10px;
+  background: rgb(245, 241, 241);
+  color: black;
 }
 
 #lose-page {
@@ -24,11 +35,15 @@
 }
 
 canvas {
-  border: 1px solid black;
+  height: 825px;
+  width: 600px;
+  border: 1px solid white;
   display: block;
   margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-image: url('../img/seaback.png');
+  background-size: cover;
 }
 
 /* Auxiliar classes */
