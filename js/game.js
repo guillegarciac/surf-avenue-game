@@ -3,6 +3,7 @@ class Game {
     this.ctx = context;
     this.surfer = new Player (450, 550, 100, 50);
     this.obstacles = [];
+    this.points = 0;
     this.generateInterval = null;
   }
 
@@ -35,6 +36,12 @@ class Game {
     });
   }
 
+  _writeScore() {
+    this.ctx.fillStyle = "white";
+    this.ctx.font = "30px Poppins";
+    this.ctx.fillText(`Score: ${this.points}`, 50, 40);
+  }
+
   _drawSurfer() {
     this.ctx.drawImage(this.surfer.image, this.surfer.x, this.surfer.y, this.surfer.width, this.surfer.height);
   }
@@ -47,6 +54,7 @@ class Game {
     this._clean();
     this._drawSurfer();
     this._drawObstacles();
+    this._writeScore();
     window.requestAnimationFrame(() => this._update());
   }
 

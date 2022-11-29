@@ -8,16 +8,16 @@ class Player {
   }
 
   moveRight() {
-    this.x = this.x + 300;
+    this.x = this.x + 150;
     if (this.x > 1000) {
-      this.x = 850 - this.width;
+      this.x = 0;
     }
   }
 
   moveLeft() {
-    this.x = this.x - 300;
+    this.x = this.x - 150;
     if (this.x < 0) {
-      this.x = 150;
+      this.x = 1000 - this.width;
     }
   }
 }

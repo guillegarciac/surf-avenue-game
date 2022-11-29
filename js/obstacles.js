@@ -4,7 +4,7 @@ class Obstacle {
     this.y = Math.floor(Math.random() * -100);
     this.image = surfBoard;
     this.width = 400;
-    this.height = 50;
+    this.height = 150;
     this.fallInterval = undefined;
   }
 
