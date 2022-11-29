@@ -2,6 +2,22 @@ class Game {
   constructor(context) {
     this.ctx = context;
     this.surfer = new Player (450, 550, 100, 50);
+    this.obstacles = [];
+    this.generateInterval = null;
+  }
+
+  _generateObstacles() {
+    this.generateInterval = setInterval (() => {
+      const newObstacle = new Obstacle();
+      newObstacle._fallDown();
+      this.obstacles.push(newObstacle);
+    }, 1000)
+  }
+
+  _drawObstacles() {
+    this.obstacles.forEach((elem) => {
+      this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
+    })
   }
 
   _assignControls() {
@@ -30,12 +46,15 @@ class Game {
   _update() {
     this._clean();
     this._drawSurfer();
+    this._drawObstacles();
     window.requestAnimationFrame(() => this._update());
   }
 
   start() {
-    backgroundMusic.play();
-    this._assignControls();
+    //backgroundMusic.play();
     this._update();
+    this._assignControls();
+    this._generateObstacles();
+    
   }
 }
