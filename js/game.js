@@ -5,6 +5,13 @@ class Game {
     this.obstacles = [];
     this.points = 0;
     this.generateInterval = null;
+    this.currentTime = 0;
+  }
+
+  _timer() {
+    this.intervalId = setInterval(() => {
+      this.currentTime = this.currentTime + 1;
+    }, 1000);
   }
 
   _generateObstacles() {
@@ -58,7 +65,7 @@ class Game {
   _writeScore() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "30px Poppins";
-    this.ctx.fillText(`Score: ${this.points}`, 50, 40);
+    this.ctx.fillText(`Score: ${this.currentTime}`, 50, 40);
   }
 
   _drawSurfer() {
@@ -72,6 +79,7 @@ class Game {
 
   _gameOver() {
     clearInterval(this.generateInterval);
+    clearInterval(this.intervalId);
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
@@ -79,6 +87,7 @@ class Game {
   }
 
   _update() {
+    console.log(this.currentTime);
     this._clean();
     this._drawSurfer();
     this._drawObstacles();
@@ -89,6 +98,7 @@ class Game {
 
   start() {
     //backgroundMusic.play();
+    this._timer();
     this._update();
     this._assignControls();
     this._generateObstacles();
