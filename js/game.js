@@ -68,18 +68,35 @@ class Game {
     this.ctx.fillText(`Score: ${this.currentTime}`, 50, 40);
   }
 
+  _checkScore() {
+    console.log(this.currentTime);
+    if (this.currentTime === 5) {
+      this._nextLevel();
+    }
+  }
+
   _drawSurfer() {
     this.ctx.drawImage(this.surfer.image, this.surfer.x, this.surfer.y, this.surfer.width, this.surfer.height);
-    //console.log(this.surfer.x)
   }
 
   _clean() {
     this.ctx.clearRect(0, 0, 1000, 600);
   }
 
+  _nextLevel() {
+    clearInterval(this.generateInterval);
+    clearInterval(this.intervalId);
+    this.obstacles = [];
+    const levelPage = document.getElementById('level-page');
+    levelPage.style = "display: flex";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display: none";
+  }
+
   _gameOver() {
     clearInterval(this.generateInterval);
     clearInterval(this.intervalId);
+    this.obstacles = [];
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
@@ -87,12 +104,12 @@ class Game {
   }
 
   _update() {
-    console.log(this.currentTime);
     this._clean();
     this._drawSurfer();
     this._drawObstacles();
     this._checkCollisions();
     this._writeScore();
+    this._checkScore();
     window.requestAnimationFrame(() => this._update());
   }
 

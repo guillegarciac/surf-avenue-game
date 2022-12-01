@@ -16,10 +16,16 @@ p {
   margin: 15px 0;
 }
 
+h1 {
+  color: #008000;
+  font-size: 80px;
+}
+
 /* Basic styles */
 
 #start-page,
-#lose-page {
+#lose-page,
+#level-page {
   height: 700px;
   width: 600px;
   display: flex;
@@ -35,6 +41,10 @@ p {
 }
 
 #lose-page {
+  display: none;
+}
+
+#level-page {
   display: none;
 }
 
