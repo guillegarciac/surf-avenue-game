@@ -1,7 +1,7 @@
 class Game {
   constructor(context) {
     this.ctx = context;
-    this.surfer = new Player (450, 550, 100, 50);
+    this.surfer = new Player (450, 450, 180, 150);
     this.obstacles = [];
     this.points = 0;
     this.generateInterval = null;
@@ -10,10 +10,12 @@ class Game {
   _generateObstacles() {
     this.generateInterval = setInterval (() => {
       const newObstacle = new Obstacle();
+      //console.log(newObstacle);
       newObstacle._fallDown();
       this.obstacles.push(newObstacle);
-    }, 1000)
+    }, 2000)
   }
+  
 
   _drawObstacles() {
     this.obstacles.forEach((elem) => {
@@ -36,6 +38,27 @@ class Game {
     });
   }
 
+  _checkCollisions() {
+    this.obstacles.forEach((obstacle) => {
+      if (
+        (
+          // Compruebo si mi meatball está dentro de la X + width del droplet
+          this.surfer.x >= obstacle.x && this.surfer.x <= obstacle.x + obstacle.width /* ||
+          this.surfer.x + this.surfer.width >= obstacle.x && this.surfer.x + this.surfer.width <= obstacle.x + obstacle.width ||
+          // Incluso si mi meatball es más grande que el droplet
+          obstacle.x >= this.surfer.x && obstacle.x <= this.surfer.x + this.surfer.width */
+        ) &&
+        (
+          // Lo mismo con el eje Y
+          this.surfer.y >= obstacle.y && this.surfer.y <= obstacle.y + obstacle.height /* ||
+          this.surfer.y + this.surfer.height >= obstacle.y && this.surfer.y + this.surfer.height <= obstacle.y + obstacle.height ||
+          obstacle.y >= this.surfer.y && obstacle.y <= this.surfer.y + this.surfer.height */
+        ) 
+      ) { this.points-- } 
+      else {this.points === 0}
+    })
+  }
+
   _writeScore() {
     this.ctx.fillStyle = "white";
     this.ctx.font = "30px Poppins";
@@ -44,6 +67,7 @@ class Game {
 
   _drawSurfer() {
     this.ctx.drawImage(this.surfer.image, this.surfer.x, this.surfer.y, this.surfer.width, this.surfer.height);
+    //console.log(this.surfer.x)
   }
 
   _clean() {
@@ -54,6 +78,7 @@ class Game {
     this._clean();
     this._drawSurfer();
     this._drawObstacles();
+    this._checkCollisions();
     this._writeScore();
     window.requestAnimationFrame(() => this._update());
   }
