@@ -42,20 +42,16 @@ class Game {
     this.obstacles.forEach((obstacle) => {
       if (
         (
-          // Compruebo si mi meatball está dentro de la X + width del droplet
-          this.surfer.x >= obstacle.x && this.surfer.x <= obstacle.x + obstacle.width /* ||
+          this.surfer.x >= obstacle.x && this.surfer.x <= obstacle.x + obstacle.width ||
           this.surfer.x + this.surfer.width >= obstacle.x && this.surfer.x + this.surfer.width <= obstacle.x + obstacle.width ||
-          // Incluso si mi meatball es más grande que el droplet
-          obstacle.x >= this.surfer.x && obstacle.x <= this.surfer.x + this.surfer.width */
+          obstacle.x >= this.surfer.x && obstacle.x <= this.surfer.x + this.surfer.width
         ) &&
         (
-          // Lo mismo con el eje Y
-          this.surfer.y >= obstacle.y && this.surfer.y <= obstacle.y + obstacle.height /* ||
+          this.surfer.y >= obstacle.y && this.surfer.y <= obstacle.y + obstacle.height ||
           this.surfer.y + this.surfer.height >= obstacle.y && this.surfer.y + this.surfer.height <= obstacle.y + obstacle.height ||
-          obstacle.y >= this.surfer.y && obstacle.y <= this.surfer.y + this.surfer.height */
+          obstacle.y >= this.surfer.y && obstacle.y <= this.surfer.y + this.surfer.height
         ) 
-      ) { this.points-- } 
-      else {this.points === 0}
+      ) {this._gameOver();} 
     })
   }
 
@@ -72,6 +68,14 @@ class Game {
 
   _clean() {
     this.ctx.clearRect(0, 0, 1000, 600);
+  }
+
+  _gameOver() {
+    clearInterval(this.generateInterval);
+    const losePage = document.getElementById('lose-page');
+    losePage.style = "display: flex";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display: none";
   }
 
   _update() {

@@ -1,7 +1,7 @@
 class Obstacle {
   constructor () {
-    this.possiblePositions = [0, 150, 300, 450, 600, 750, 900];
-    this.x = this.possiblePositions[Math.floor(Math.random() * 7)];
+    this.possiblePositions = [150, 450, 750];
+    this.x = this.possiblePositions[Math.floor(Math.random() * 3)];
     this.y = -100;
     this.image = surfBoard;
     this.width = 180;
