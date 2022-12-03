@@ -13,7 +13,7 @@ body {
 }
 
 p {
-  margin: 15px 0;
+  margin: 30px 0;
 }
 
 h1 {
@@ -67,4 +67,36 @@ canvas {
 
 .shown {
   display: flex;
+}
+
+#start {
+  font-size: 30px;
+  color: #fff;
+  background: rgb(240, 56, 56);
+  padding: 20px;
+  border-radius: 38px;
+}
+
+#restart {
+  font-size: 30px;
+  color: #fff;
+  background: rgb(240, 56, 56);
+  padding: 20px;
+  border-radius: 38px;
+}
+
+#next {
+  font-size: 30px;
+  color: #fff;
+  background: rgb(240, 56, 56);
+  padding: 20px;
+  border-radius: 38px;
+}
+
+.instructions {
+  color: #000;
+  background-color: #faebd7;
+  padding: 30px;
+  font-size: 25px;
+  margin: 40px;
 }
