@@ -3,6 +3,8 @@ window.onload = function () {
   const ctx = canvas.getContext('2d');
   const startPage = document.getElementById('start-page');
   const startButton = document.getElementById('start');
+  const restartPage = document.getElementById('lose-page');
+  const restartButton = document.getElementById('restart');
   
   startButton.onclick = function () {
     startPage.style = "display: none";
@@ -11,3 +13,13 @@ window.onload = function () {
     game.start();
   }
 }
+
+
+
+  
+  
+
+
+
+
+

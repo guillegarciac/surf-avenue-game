@@ -17,12 +17,11 @@ class Game {
   _generateObstacles() {
     this.generateInterval = setInterval (() => {
       const newObstacle = new Obstacle();
-      //console.log(newObstacle);
+      newObstacle._assignImage();
       newObstacle._fallDown();
       this.obstacles.push(newObstacle);
     }, 2000)
   }
-  
 
   _drawObstacles() {
     this.obstacles.forEach((elem) => {
@@ -69,7 +68,6 @@ class Game {
   }
 
   _checkScore() {
-    console.log(this.currentTime);
     if (this.currentTime === 5) {
       this._nextLevel();
     }
@@ -87,20 +85,48 @@ class Game {
     clearInterval(this.generateInterval);
     clearInterval(this.intervalId);
     this.obstacles = [];
+    this.currentTime = 0;
     const levelPage = document.getElementById('level-page');
     levelPage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
+    const nextButton = document.getElementById('next');
+    nextButton.onclick = () => {
+      this._generateLevel();
+    }
+  }
+
+  _generateLevel() {
+    const levelPage = document.getElementById('level-page');
+    levelPage.style = "display: none";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display: flex";
+    this._generateObstacles();
+    this._timer();
+  }
+
+  _restart() {
+    const losePage = document.getElementById('lose-page');
+    losePage.style = "display: none";
+    const canvas = document.getElementById('canvas');
+    canvas.style = "display: flex";
+    this._generateObstacles();
+    this._timer();
   }
 
   _gameOver() {
     clearInterval(this.generateInterval);
     clearInterval(this.intervalId);
     this.obstacles = [];
+    this.currentTime = 0;
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
+    const restartButton = document.getElementById('restart');
+    restartButton.onclick = () => {
+      this._restart();
+    }
   }
 
   _update() {
@@ -119,6 +145,5 @@ class Game {
     this._update();
     this._assignControls();
     this._generateObstacles();
-    
   }
 }
