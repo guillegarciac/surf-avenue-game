@@ -4,33 +4,39 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <link rel="stylesheet" href="css/style.css"/>
   <title>Surf Avenue</title>
 </head>
 <body>
   <div id="start-page">
     <main>
-      <h1>Surf Avenue</h1>
+      <h1 class="animate__backOutDown">Surf Avenue</h1>
       <div class="instructions">
-        <p>Scape through the obtacles</p>
-        <p>Move the car with <br> ← → <br> arrows</p>
+        <p>Scape through the obtacles by</p>
+        <p>moving the car with</p>
+        <p><strong>← →</strong><br> arrows</p>
       </div>
         <button id="start">START</button>
     </main>
   </div>
   <div id="lose-page">
     <main>
-      <h1>maybe next time</h1>
+      <h1>🥵 maybe next time</h1>
       <div class="instructions">
         <img src="/img/loser.png" alt="loser">
-        <p>Try again :)</p>
       </div>
       <button id="restart">Restart</button>
+      <p id="pointsTag"></p>
     </main>
   </div>
   <div id="level-page">
     <main>
-      <h1>GOOD JOB! Next Level</h1>
+      <h1>🤩 wow.. sick</h1>
+      <p id="levelTag"></p>
       <button id="next">Let's go!</button>
     </main>
   </div>  
