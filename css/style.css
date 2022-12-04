@@ -9,17 +9,18 @@
 body {
   background-color: rgb(1, 1, 1);
   background-image: url('../img/grass.png');
-  font-family: Georgia, 'Times New Roman', Times, serif
+  font-family: 'Poppins', sans-serif;
 }
 
+
 p {
-  margin: 30px 0;
-  font-size: 20px;
+  margin: 25px 0;
+  font-size: 28px;
 }
 
 h1 {
   color: #008000;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 /* Basic styles */
@@ -96,7 +97,7 @@ canvas {
 
 .instructions {
   color: #000;
-  background-color: #faebd7;
+  background-color: #cdedc7;
   padding: 10px;
   font-size: 25px;
   margin: 40px;

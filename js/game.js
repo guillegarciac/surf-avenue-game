@@ -1,9 +1,9 @@
 class Game {
   constructor(context) {
     this.ctx = context;
-    this.surfer = new Player (450, 450, 180, 150);
+    this.surfer = new Player (430, 475, 150, 120);
     this.obstacles = [];
-    this.points = 0;
+    this.points = 5 * this.level;
     this.generateInterval = null;
     this.currentTime = 0;
     this.level = 1;
@@ -21,7 +21,7 @@ class Game {
       newObstacle._assignImage();
       newObstacle._fallDown();
       this.obstacles.push(newObstacle);
-    }, 2000)
+    }, 1000)
   }
 
   _drawObstacles() {
@@ -66,11 +66,11 @@ class Game {
     this.ctx.fillStyle = "white";
     this.ctx.font = "30px Poppins";
     this.ctx.fillText(`Score: ${this.currentTime}`, 70, 40);
-    this.ctx.fillText(`Level: ${this.level}`, 800, 40)
+    this.ctx.fillText(`Level: ${this.level}`, 820, 40)
   }
 
   _checkScore() {
-    if (this.currentTime === 5) {
+    if (this.currentTime === 5 * this.level) {
       this._nextLevel();
     }
   }
@@ -91,7 +91,6 @@ class Game {
     const levelPage = document.getElementById('level-page');
     levelPage.style = "display: flex";
     document.getElementById('levelTag').innerHTML = `Let's try with Level ${this.level}`;
-    this.currentTime = 0;
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
     const nextButton = document.getElementById('next');
@@ -116,16 +115,23 @@ class Game {
     canvas.style = "display: flex";
     this._generateObstacles();
     this._timer();
+    this.level = 1;
+    this.currentTime = 0;
   }
 
   _gameOver() {
     clearInterval(this.generateInterval);
     clearInterval(this.intervalId);
     this.obstacles = [];
+    if (this.level === 1) {
+      this.currentTime = this.currentTime;
+      document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.currentTime}`
+    } else { 
+      this.currentTime = 0;
+      document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.currentTime + (5 * this.level - 1)} points`;
+    }
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
-    document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.currentTime} points`;
-    this.currentTime = 0;
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
     const restartButton = document.getElementById('restart');
