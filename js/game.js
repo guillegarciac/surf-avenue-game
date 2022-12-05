@@ -131,7 +131,7 @@ class Game {
     canvas.style = "display: flex";
     this._generateObstacles();
     this._timer();
-    this.level = 1;
+    this.level = this.level;
     this.points = 0;
     this.currentTime = 0;
     backgroundMusic.play();
