@@ -8,6 +8,7 @@ class Game {
     this.currentTime = 0;
     this.level = 1;
     this.lives = 3;
+    this.collisionSound = new sound('../music/mixkit-truck-crash-with-explosion-1616.wav');
   }
 
   _timer() {
@@ -59,7 +60,10 @@ class Game {
           this.surfer.y + this.surfer.height >= obstacle.y && this.surfer.y + this.surfer.height <= obstacle.y + obstacle.height ||
           obstacle.y >= this.surfer.y && obstacle.y <= this.surfer.y + this.surfer.height
         ) 
-      ) {this._gameOver();} 
+      ) {
+        this._gameOver(); 
+        this.collisionSound.play();
+        }
     })
   }
 
@@ -122,6 +126,8 @@ class Game {
     this.level = 1;
     this.points = 0;
     this.currentTime = 0;
+    backgroundMusic.play();
+    backgroundMusic.currentTime = 0;
   }
 
   _gameOver() {
@@ -130,6 +136,7 @@ class Game {
     this.obstacles = [];
     this.lives = this.lives - 1;
     this.points = this.currentTime + this.points;
+    backgroundMusic.pause();
     document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.points} points and you still have ${this.lives} lives buddy.`
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
@@ -156,7 +163,7 @@ class Game {
   }
 
   start() {
-    //backgroundMusic.play();
+    backgroundMusic.play();
     this._timer();
     this._update();
     this._assignControls();
