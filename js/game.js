@@ -9,6 +9,7 @@ class Game {
     this.level = 1;
     this.lives = 3;
     this.collisionSound = new sound('../music/mixkit-truck-crash-with-explosion-1616.wav');
+    this.explosion = undefined;
   }
 
   _timer() {
@@ -30,6 +31,12 @@ class Game {
     this.obstacles.forEach((elem) => {
       this.ctx.drawImage(elem.image, elem.x, elem.y, elem.width, elem.height);
     })
+  }
+
+  _drawExplosion() {
+    if (this.explosion) {
+      this.ctx.drawImage(this.explosion, this.surfer.x + (this.surfer.width / 2) - 100, this.surfer.y-130, 200, 200);
+    }
   }
 
   _assignControls() {
@@ -61,6 +68,7 @@ class Game {
           obstacle.y >= this.surfer.y && obstacle.y <= this.surfer.y + this.surfer.height
         ) 
       ) {
+        this._applyExplosion()
         this._gameOver(); 
         this.collisionSound.play();
         }
@@ -72,7 +80,7 @@ class Game {
     this.ctx.font = "30px Poppins";
     this.ctx.fillText(`Score: ${this.currentTime}`, 70, 40);
     this.ctx.fillText(`Level: ${this.level}`, 820, 40);
-    this.ctx.fillText(`Lives: ${this.lives}`, 100, 550);
+    this.ctx.fillText(`Lives: ${this.lives}`, 70, 550);
   }
 
   _checkScore() {
@@ -98,7 +106,7 @@ class Game {
     this.currentTime = 0;
     const levelPage = document.getElementById('level-page');
     levelPage.style = "display: flex";
-    document.getElementById('levelTag').innerHTML = `Let's try with Level ${this.level}`;
+    document.getElementById('levelTag').innerHTML = `Will speed this up and keep you on track for a little bit longer... Can you handle Level ${this.level}?`;
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
     const nextButton = document.getElementById('next');
@@ -137,11 +145,11 @@ class Game {
     this.lives = this.lives - 1;
     this.points = this.currentTime + this.points;
     backgroundMusic.pause();
-    document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.points} points and you still have ${this.lives} lives buddy.`
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
+    document.getElementById('pointsTag').innerHTML = `But congrats anyway... you have reached Level ${this.level} with ${this.points} points and still have ${this.lives} lives.`
     const restartButton = document.getElementById('restart');
     if (this.lives === 0) {
       restartButton.style = "display: none"
@@ -152,10 +160,26 @@ class Game {
     }
   }
 
+  _applyExplosion() {
+    let counter = 0;
+    this.explosionInterval = setInterval(() => {
+      if (counter < explosions.length) {
+        this.explosion = explosions[counter];
+        counter++;
+      }
+      if (counter == explosions.length) {
+        this.explosion = undefined;
+        clearInterval(this.explosionInterval);
+        counter = 0;
+      }
+    }, 40)
+  }
+
   _update() {
     this._clean();
     this._drawSurfer();
     this._drawObstacles();
+    this._drawExplosion();
     this._checkCollisions();
     this._writeScore();
     this._checkScore();
