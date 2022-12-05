@@ -3,10 +3,11 @@ class Game {
     this.ctx = context;
     this.surfer = new Player (430, 475, 150, 120);
     this.obstacles = [];
-    this.points = 5 * this.level;
+    this.points = 0;
     this.generateInterval = null;
     this.currentTime = 0;
     this.level = 1;
+    this.lives = 3;
   }
 
   _timer() {
@@ -66,7 +67,8 @@ class Game {
     this.ctx.fillStyle = "white";
     this.ctx.font = "30px Poppins";
     this.ctx.fillText(`Score: ${this.currentTime}`, 70, 40);
-    this.ctx.fillText(`Level: ${this.level}`, 820, 40)
+    this.ctx.fillText(`Level: ${this.level}`, 820, 40);
+    this.ctx.fillText(`Lives: ${this.lives}`, 100, 550);
   }
 
   _checkScore() {
@@ -88,6 +90,8 @@ class Game {
     clearInterval(this.intervalId);
     this.level = this.level + 1;
     this.obstacles = [];
+    this.points = this.points + this.currentTime;
+    this.currentTime = 0;
     const levelPage = document.getElementById('level-page');
     levelPage.style = "display: flex";
     document.getElementById('levelTag').innerHTML = `Let's try with Level ${this.level}`;
@@ -116,6 +120,7 @@ class Game {
     this._generateObstacles();
     this._timer();
     this.level = 1;
+    this.points = 0;
     this.currentTime = 0;
   }
 
@@ -123,20 +128,20 @@ class Game {
     clearInterval(this.generateInterval);
     clearInterval(this.intervalId);
     this.obstacles = [];
-    if (this.level === 1) {
-      this.currentTime = this.currentTime;
-      document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.currentTime}`
-    } else { 
-      this.currentTime = 0;
-      document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.currentTime + (5 * this.level - 1)} points`;
-    }
+    this.lives = this.lives - 1;
+    this.points = this.currentTime + this.points;
+    document.getElementById('pointsTag').innerHTML = `But congrats anyway you have reached Level ${this.level} with ${this.points} points and you still have ${this.lives} lives buddy.`
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
     const restartButton = document.getElementById('restart');
-    restartButton.onclick = () => {
-      this._restart();
+    if (this.lives === 0) {
+      restartButton.style = "display: none"
+    } else {
+      restartButton.onclick = () => {
+        this._restart();
+      }
     }
   }
 
@@ -158,3 +163,4 @@ class Game {
     this._generateObstacles();
   }
 }
+
