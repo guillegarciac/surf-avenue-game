@@ -1,13 +1,12 @@
 class Obstacle {
-  constructor (level) {
-    this.possiblePositions = [150, 300, 450, 600, 750];
-    this.x = this.possiblePositions[Math.floor(Math.random() * 5)];
+  constructor (level, position) {
+    this.x = position;
     this.y = -100;
     this.image = null;
     this.width = 150;
     this.height = 120;
     this.fallInterval = undefined;
-    this.speed = 1 + level
+    this.speed = 1 + level;
   }
 
   _fallDown() {
@@ -24,12 +23,5 @@ class Obstacle {
     }
 }
 
-//check console errors
-
 //add last Position as argument to avoid having two cards in the same position of the array consecutively.
-
-//update screens restart vs. gameOver
-
-//update lives to be hearts
-
-//try to add powerUps?
+//how to make the collision show and remove the car from the screen

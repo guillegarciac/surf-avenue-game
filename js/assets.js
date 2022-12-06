@@ -58,3 +58,4 @@ const explosions = [boom1, boom2, boom3, boom4, boom5, boom6, boom7, boom8, boom
 
 //Music
 const backgroundMusic = new Audio('../music/The Beach Boys.mp3');
+backgroundMusic.volume = 0.15;

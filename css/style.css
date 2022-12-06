@@ -20,8 +20,14 @@ p {
 
 h1 {
   color: #000000;
+  font-size: 70px;
+}
+
+h2 {
+  color: #000000;
   font-size: 50px;
 }
+
 
 /* Basic styles */
 
@@ -29,7 +35,7 @@ h1 {
 #lose-page,
 #gameover-page,
 #level-page {
-  height: 700px;
+  height: 740px;
   width: 600px;
   display: flex;
   justify-content: center;
@@ -38,7 +44,7 @@ h1 {
   text-align: center;
   margin: 0 auto;
   border: 1px solid white;
-  margin-top: 10px;
+  margin-top: 0px;
   background: rgb(245, 241, 241);
   color: black;
 }
@@ -56,7 +62,7 @@ h1 {
 }
 
 canvas {
-  height: 700px;
+  height: 760px;
   width: 600px;
   display: block;
   margin: 0 auto;

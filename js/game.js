@@ -8,8 +8,11 @@ class Game {
     this.currentTime = 0;
     this.level = 1;
     this.lives = 3;
+    this.collision = false;
     this.collisionSound = new sound('../music/mixkit-truck-crash-with-explosion-1616.wav');
     this.explosion = undefined;
+    this.possiblePositions = [150, 300, 450, 600, 750];
+    this.lastPosition = null;
   }
 
   _timer() {
@@ -20,11 +23,19 @@ class Game {
 
   _generateObstacles() {
     this.generateInterval = setInterval (() => {
-      const newObstacle = new Obstacle(this.level);
+      const newObstacle = new Obstacle(this.level, this._generateRandomPosition());
       newObstacle._assignImage();
       newObstacle._fallDown();
       this.obstacles.push(newObstacle);
     }, 1000)
+  }
+
+  _generateRandomPosition() {
+    let currentPosition = this.possiblePositions[Math.floor(Math.random() * 5)];
+    while (currentPosition === this.lastPosition) { 
+      currentPosition = this.possiblePositions[Math.floor(Math.random() * 5)];
+    } this.lastPosition = currentPosition;
+    return currentPosition;
   }
 
   _drawObstacles() {
@@ -55,7 +66,8 @@ class Game {
   }
 
   _checkCollisions() {
-    this.obstacles.forEach((obstacle) => {
+    if (!this.collision) {
+      this.obstacles.forEach((obstacle) => {
       if (
         (
           this.surfer.x >= obstacle.x && this.surfer.x <= obstacle.x + obstacle.width ||
@@ -69,11 +81,12 @@ class Game {
         ) 
       ) {
         this._applyExplosion();
-        this._gameOver();
+        this.collision = true;
+        //setTimeout(( ) => this._gameOver(), 2000);
         this.collisionSound.play();
-        //setTimeout(this._gameOver, 0); //to see the explosions but it suddenly shows the nextLevel canvas? Check Marina
         }
     })
+    }
   }
 
   _writeScore() {
@@ -139,6 +152,7 @@ class Game {
     this.level = this.level;
     this.points = 0;
     this.currentTime = 0;
+    this.collision = false;
     backgroundMusic.play();
     backgroundMusic.currentTime = 0;
   }
@@ -156,7 +170,7 @@ class Game {
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: none";
-    document.getElementById('pointsTag').innerHTML = `But congrats anyway... you have reached Level ${this.level} with ${this.points} points and still have ${this.lives} lives.`
+    document.getElementById('pointsTag').innerHTML = `You've reached Level ${this.level} with ${this.points} points and still have ${this.lives} lives.`
     const restartButton = document.getElementById('restart');
     if (this.lives === 0) {
       restartButton.style = "display: none";
@@ -180,7 +194,8 @@ class Game {
         this.explosion = undefined;
         clearInterval(this.explosionInterval);
         counter = 0;
-      }
+        this._gameOver();
+      } 
     }, 40)
   }
 
