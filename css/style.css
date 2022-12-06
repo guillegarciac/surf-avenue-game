@@ -19,7 +19,7 @@ p {
 }
 
 h1 {
-  color: #008000;
+  color: #000000;
   font-size: 50px;
 }
 
@@ -27,6 +27,7 @@ h1 {
 
 #start-page,
 #lose-page,
+#gameover-page,
 #level-page {
   height: 700px;
   width: 600px;
@@ -47,6 +48,10 @@ h1 {
 }
 
 #level-page {
+  display: none;
+}
+
+#gameover-page {
   display: none;
 }
 
@@ -99,7 +104,16 @@ canvas {
 
 .instructions {
   color: #000;
-  background-color: #cdedc7;
+  background-color: #c5eaba;
+  border-radius: 40px;
+  padding: 10px;
+  font-size: 25px;
+  margin: 40px;
+}
+
+.tryagain {
+  color: #000;
+  background-color: rgb(245, 241, 241);
   padding: 10px;
   font-size: 25px;
   margin: 40px;

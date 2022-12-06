@@ -68,9 +68,10 @@ class Game {
           obstacle.y >= this.surfer.y && obstacle.y <= this.surfer.y + this.surfer.height
         ) 
       ) {
-        this._applyExplosion()
-        this._gameOver(); 
+        this._applyExplosion();
+        this._gameOver();
         this.collisionSound.play();
+        //setTimeout(this._gameOver, 0); //to see the explosions but it suddenly shows the nextLevel canvas? Check Marina
         }
     })
   }
@@ -118,6 +119,8 @@ class Game {
   _generateLevel() {
     const levelPage = document.getElementById('level-page');
     levelPage.style = "display: none";
+    const gameOverPage = document.getElementById('gameover-page');
+    gameOverPage.style = "display: none";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: flex";
     this._generateObstacles();
@@ -127,6 +130,8 @@ class Game {
   _restart() {
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: none";
+    const gameOverPage = document.getElementById('gameover-page');
+    gameOverPage.style = "display: none";
     const canvas = document.getElementById('canvas');
     canvas.style = "display: flex";
     this._generateObstacles();
@@ -145,6 +150,8 @@ class Game {
     this.lives = this.lives - 1;
     this.points = this.currentTime + this.points;
     backgroundMusic.pause();
+    const gameOverPage = document.getElementById('gameover-page');
+    gameOverPage.style = "display: none";
     const losePage = document.getElementById('lose-page');
     losePage.style = "display: flex";
     const canvas = document.getElementById('canvas');
@@ -152,7 +159,9 @@ class Game {
     document.getElementById('pointsTag').innerHTML = `But congrats anyway... you have reached Level ${this.level} with ${this.points} points and still have ${this.lives} lives.`
     const restartButton = document.getElementById('restart');
     if (this.lives === 0) {
-      restartButton.style = "display: none"
+      restartButton.style = "display: none";
+      losePage.style = "display: none";
+      gameOverPage.style = "display: flex";
     } else {
       restartButton.onclick = () => {
         this._restart();

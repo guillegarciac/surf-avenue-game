@@ -23,3 +23,13 @@ class Obstacle {
       this.image = carImages[Math.floor(Math.random() * carImages.length)];
     }
 }
+
+//check console errors
+
+//add last Position as argument to avoid having two cards in the same position of the array consecutively.
+
+//update screens restart vs. gameOver
+
+//update lives to be hearts
+
+//try to add powerUps?
