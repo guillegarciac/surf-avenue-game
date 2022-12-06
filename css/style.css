@@ -35,7 +35,7 @@ h2 {
 #lose-page,
 #gameover-page,
 #level-page {
-  height: 740px;
+  height: 760px;
   width: 600px;
   display: flex;
   justify-content: center;
@@ -62,12 +62,10 @@ h2 {
 }
 
 canvas {
-  height: 760px;
+  height: 764px;
   width: 600px;
   display: block;
   margin: 0 auto;
-  margin-top: 10px;
-  /* margin-bottom: 10px; */
   background-image: url('../img/racetrackgame.png');
   background-size: cover;
 }
