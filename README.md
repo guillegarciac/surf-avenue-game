@@ -45,5 +45,7 @@ Minimum user stories:
 
 <!-- When you finish, add these links and commit -->
 
-- [Presentation slides](https://github.com/users/guillegarciac/projects/3/views/1)
-- [Deployed game]()
+- [Presentation slides] https://slides.com/d/qFWtkvg/live
+- [Deployed game]() https://guillegarciac.github.io/surf-avenue-game/
+
+
