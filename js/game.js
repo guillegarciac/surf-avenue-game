@@ -82,6 +82,7 @@ class Game {
         ) 
       ) {
         this._applyExplosion();
+        this.surfer.width = 0;
         this.collision = true;
         //setTimeout(( ) => this._gameOver(), 2000);
         this.collisionSound.play();
@@ -139,6 +140,8 @@ class Game {
     canvas.style = "display: flex";
     this._generateObstacles();
     this._timer();
+    backgroundMusic.play();
+    backgroundMusic.currentTime = 0;
   }
 
   _restart() {
@@ -150,6 +153,7 @@ class Game {
     canvas.style = "display: flex";
     this._generateObstacles();
     this._timer();
+    this.surfer.width = 150;
     this.level = this.level;
     this.points = 0;
     this.currentTime = 0;
@@ -165,6 +169,7 @@ class Game {
     this.lives = this.lives - 1;
     this.points = this.currentTime + this.points;
     backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
     const gameOverPage = document.getElementById('gameover-page');
     gameOverPage.style = "display: none";
     const losePage = document.getElementById('lose-page');

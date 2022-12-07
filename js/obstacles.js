@@ -23,5 +23,4 @@ class Obstacle {
     }
 }
 
-//add last Position as argument to avoid having two cards in the same position of the array consecutively.
-//how to make the collision show and remove the car from the screen
+
