@@ -13,6 +13,7 @@ class Game {
     this.explosion = undefined;
     this.possiblePositions = [150, 300, 450, 600, 750];
     this.lastPosition = null;
+    this.obstacleNumber = 1100 - (this.level * 100);
   }
 
   _timer() {
@@ -27,7 +28,7 @@ class Game {
       newObstacle._assignImage();
       newObstacle._fallDown();
       this.obstacles.push(newObstacle);
-    }, 1000)
+    }, this.obstacleNumber)
   }
 
   _generateRandomPosition() {
