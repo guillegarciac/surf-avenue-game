@@ -9,7 +9,7 @@ class Game {
     this.level = 1;
     this.lives = 3;
     this.collision = false;
-    this.collisionSound = new sound('../music/mixkit-truck-crash-with-explosion-1616.wav');
+    this.collisionSound = new sound('./music/mixkit-truck-crash-with-explosion-1616.wav');
     this.explosion = undefined;
     this.possiblePositions = [150, 300, 450, 600, 750];
     this.lastPosition = null;
