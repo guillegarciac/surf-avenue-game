@@ -1,7 +1,5 @@
 # Surf Avenue Game
 
-<!-- When you finish, add a nice screenshot of your game -->
-<img src="./img/surfavenue.png">
 
 ## Description
 
@@ -33,7 +31,6 @@ Minimum user stories:
 - Obstacles should also drop from the center  
 - User should have 3 lives
 - After a collision the user should be able to restart where the game stopped
-- 
 
 
 ## File structure
@@ -43,9 +40,7 @@ Minimum user stories:
 
 ## Useful links
 
-<!-- When you finish, add these links and commit -->
-
-- [Presentation slides] https://slides.com/d/qFWtkvg/live
-- [Deployed game]() https://guillegarciac.github.io/surf-avenue-game/
+- [Presentation slides](https://slides.com/d/qFWtkvg/live)
+- [Deployed game](https://guillegarciac.github.io/surf-avenue-game/) 
 
 
