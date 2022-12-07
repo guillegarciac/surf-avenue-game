@@ -1,10 +1,10 @@
 //Player
 const surfer = new Image();
-surfer.src = './img/orangecar.png';
+surfer.src = '../img/orangecar.png';
 
 //Obstacles
 const blueCar = new Image();
-blueCar.src = './img/bluecar.png';
+blueCar.src = '/img/bluecar.png';
 
 const greenCar = new Image();
 greenCar.src = './img/greencar.png';
